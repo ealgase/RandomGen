@@ -2,7 +2,7 @@ from time import *
 from random import *
 import menu
 import easygui
-#from getkey import getKey
+from getkey import getKey
 savef = open('all_ever_generated', 'a')
 savecache = open('all_ever_generated', 'r')
 savef1 = open('all_ever_generated1', 'a')
@@ -33,14 +33,15 @@ if gen=='RS':
     while True:
         times=menu.menu([['Generate 1',1],['Generate 10',10],['Generate 20',20],['Generate 50',50],['Generate 100',100],['Generate 200',200],['Generate 500',500],['Generate 1000',1000],['Exit','e'],['View all generated this session','VA'],['View all generated previously','VAG']],3,'What do you want to do?')
         menu.clear()
+        stuffs=''
         if times=='e':
             exit()
         elif times=='VA':
             for i in range(len(save)):
-                print(save[i-1])
+                stuffs=save[i-1]
         elif times=='VAG':
             for i in range(len(saver1)):
-                print(saver1[i][:-1])
+                stuffs=saver1[i][:-1]
         else:
             for i in range(times):
                 adjn=randint(0,len(adj)-1)
@@ -63,11 +64,11 @@ if gen=='RS':
                     sentence=prou+' '+advu+' '+verbu+' '+preu+' '+artu+' '+adju+' '+nounu+'.'
                 else:
                     sentence=prou+' '+advu+' '+verbu+' '+artu+' '+adju+' '+nounu+'.'
-                print(sentence)
+                stuffs=stuffs+sentence+'\n'
                 save.append(sentence)
                 savef1.write(sentence+'\n')
                 saver1.append(sentence)
-        print('Finished!  Press q to continue.')
+        easygui.textbox('Your sentences:','The sentences',stuffs)
         while getKey()!='q':
             pass
 else:
