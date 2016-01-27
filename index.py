@@ -1,8 +1,6 @@
 from time import *
 from random import *
-import menu
 import easygui
-from getkey import getKey
 savef = open('all_ever_generated', 'a')
 savecache = open('all_ever_generated', 'r')
 savef1 = open('all_ever_generated1', 'a')
@@ -31,17 +29,40 @@ else:
     gen = 'VN'
 if gen=='RS':
     while True:
-        times=menu.menu([['Generate 1',1],['Generate 10',10],['Generate 20',20],['Generate 50',50],['Generate 100',100],['Generate 200',200],['Generate 500',500],['Generate 1000',1000],['Exit','e'],['View all generated this session','VA'],['View all generated previously','VAG']],3,'What do you want to do?')
-        menu.clear()
+        times=easygui.choicebox("What do you want to do?","Choose an option",['Generate 1','Generate 10','Generate 20','Generate 50','Generate 100','Generate 200','Generate 500','Generate 1000','Generate 10000(Not reccomended)','Exit','View all generated this session','View all ever generated'])
+        if times=='Generate 1':
+            times=1
+        elif times=='Generate 10':
+            times=10
+        elif times=='Generate 20':
+            times=20
+        elif times=='Generate 50':
+            times=50
+        elif times=='Generate 100':
+            times=100
+        elif times=='Generate 200':
+            times=200
+        elif times=='Generate 500':
+            times=500
+        elif times=='Generate 1000':
+            times=1000
+        elif times=='Generate 10000(Not reccomended)':
+            times=10000
+        elif times=='View all generated this session':
+            times='VA'
+        elif times=='View all ever generated':
+            times='VAG'
+        else:
+            exit()
         stuffs=''
         if times=='e':
             exit()
         elif times=='VA':
             for i in range(len(save)):
-                stuffs=save[i-1]
+                stuffs=stuffs+save[i-1]+'\n'
         elif times=='VAG':
             for i in range(len(saver1)):
-                stuffs=saver1[i][:-1]
+                stuffs=stuffs+saver1[i][:-1]+'\n'
         else:
             for i in range(times):
                 adjn=randint(0,len(adj)-1)
@@ -69,29 +90,50 @@ if gen=='RS':
                 savef1.write(sentence+'\n')
                 saver1.append(sentence)
         easygui.textbox('Your sentences:','The sentences',stuffs)
-        while getKey()!='q':
-            pass
 else:
     while True:
-        times=menu.menu([['Generate 1',1],['Generate 10',10],['Generate 20',20],['Generate 50',50],['Generate 100',100],['Generate 200',200],['Generate 500',500],['Generate 1000',1000],['Exit','e'],['View all generated this session','VA'],['View all generated previously','VAG']],3,'What do you want to do?')
-        menu.clear()
+        times=easygui.choicebox("What do you want to do?","Choose an option",['Generate 1','Generate 10','Generate 20','Generate 50','Generate 100','Generate 200','Generate 500','Generate 1000','Generate 10000(Not reccomended)','Exit','View all generated this session','View all ever generated'])
+        if times=='Generate 1':
+            times=1
+        elif times=='Generate 10':
+            times=10
+        elif times=='Generate 20':
+            times=20
+        elif times=='Generate 50':
+            times=50
+        elif times=='Generate 100':
+            times=100
+        elif times=='Generate 200':
+            times=200
+        elif times=='Generate 500':
+            times=500
+        elif times=='Generate 1000':
+            times=1000
+        elif times=='Generate 10000(Not reccomended)':
+            times=10000
+        elif times=='View all generated this session':
+            times='VA'
+        elif times=='View all ever generated':
+            times='VAG'
+        else:
+            exit()
+        stuffs=''
         if times=='e':
             exit()
         elif times=='VA':
             for i in range(len(save)):
-                print(save[i-1])
+                stuffs=stuffs+save[i-1]+'\n'
         elif times=='VAG':
             for i in range(len(saver)):
-                print(saver[i][:-1])
+                stuffs==stuffs+saver[i][:-1]+'\n'
         else:
             for i in range(times):
                 verb=verbVN[randint(0,len(verbVN)-1)]
                 noun=nounVN[randint(0,len(nounVN)-1)]
                 randomVN=verb + " " + noun
                 save.append(randomVN)
-                print(randomVN)
+                stuffs=stuffs+randomVN+'\n'
                 savef.write(randomVN+'\n')
                 saver.append(randomVN)
-        print('Finished!  Press q to continue.')
-        while getKey()!='q':
-            pass
+        easygui.textbox('Your functions:','The functions',stuffs)
+
