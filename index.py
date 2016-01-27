@@ -1,8 +1,8 @@
 from time import *
 from random import *
-#import menu
+import menu
 import easygui
-from getkey import getKey
+#from getkey import getKey
 savef = open('all_ever_generated', 'a')
 savecache = open('all_ever_generated', 'r')
 savef1 = open('all_ever_generated1', 'a')
@@ -24,7 +24,7 @@ pro=['I','We','You','They']
 save=[]
 verbVN=['Absorb','Actuate','Improve','Generate','Allow','Increase','Attach','Limit','Attract','Maintain','Conduct','Position','Connect','Prevent','Contain','Protect','Control','Provide','Convert','Reduce','Create','Regulate','Decrease','Resist','Direct','Rotate','Facilitate','Transmit','Seal']
 nounVN=['Access','Air','Apperance','Circuit','Cold','Component','Corrosion','Current','Deflection','Dirt','Energy','Entry','Flow','Fluid','Friction','Heat','Impact','Mass','Moisture','Noise','Light','Parts','Path','Performance','Stability','Surface','Travel','Vibration']
-gen=easygui.buttombox('What do you want to generate?',('Random sentences','Functions'))
+gen=easygui.buttonbox('What do you want to generate?','Make a choice',['Random sentences','Functions'])
 if gen=='Random sentences':
     gen = 'RS'
 else:
